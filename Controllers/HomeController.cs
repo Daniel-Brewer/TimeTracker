@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeTracker.Data;
@@ -15,15 +16,17 @@ namespace TimeTracker.Controllers
 {
 
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<User> _userManager;
 
-    public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context,UserManager<User> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
+        // GET: Categories
+        public async Task<IActionResult> Index()
     {
-        _context = context;
-    }
-    // GET: Categories
-    public async Task<IActionResult> Index()
-    {
-            var applicationDbContext = _context.Categories.ToList();
+            List<Category> applicationDbContext = _context.Categories.ToList();
      /*   var reverseApp = applicationDbContext.OrderByDescending(p => p.UserId); 
         return View(await reverseApp.ToListAsync()); */
             return View(applicationDbContext);
