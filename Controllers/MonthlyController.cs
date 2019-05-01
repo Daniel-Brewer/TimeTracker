@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,27 +10,22 @@ using TimeTracker.Models;
 
 namespace TimeTracker.Controllers
 {
-    [Authorize]
-    public class CategoriesController : Controller
+    public class MonthlyController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<User> _userManager;
 
-        public CategoriesController(ApplicationDbContext context, UserManager<User> userManager)
+        public MonthlyController(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
-        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        // GET: Categories
+        // GET: Monthly
         public async Task<IActionResult> Index()
         {
-            var user = await GetCurrentUserAsync();
-            return View(await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync());
+            return View(await _context.Categories.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Monthly/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,25 +43,21 @@ namespace TimeTracker.Controllers
             return View(category);
         }
 
-        // GET: Categories/Create
+        // GET: Monthly/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Monthly/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,UserId")] Category category)
         {
-            ModelState.Remove("UserId");
-            ModelState.Remove("User");
-            var user = await GetCurrentUserAsync();
             if (ModelState.IsValid)
             {
-                category.User = user;
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -76,7 +65,7 @@ namespace TimeTracker.Controllers
             return View(category);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Monthly/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,7 +81,7 @@ namespace TimeTracker.Controllers
             return View(category);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Monthly/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -127,7 +116,7 @@ namespace TimeTracker.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Monthly/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -145,7 +134,7 @@ namespace TimeTracker.Controllers
             return View(category);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Monthly/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
