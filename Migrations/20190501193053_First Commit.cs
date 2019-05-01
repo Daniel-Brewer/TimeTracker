@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TimeTracker.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class FirstCommit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,9 @@ namespace TimeTracker.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
@@ -38,28 +40,11 @@ namespace TimeTracker.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    Password = table.Column<string>(nullable: true)
+                    AccessFailedCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,6 +154,26 @@ namespace TimeTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Categories_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserCategories",
                 columns: table => new
                 {
@@ -198,19 +203,19 @@ namespace TimeTracker.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "d7936695-8eaf-45bc-96cd-32a949797200", 0, "77f556e8-67ea-4c85-92b1-767a5e5fa718", null, true, false, null, "DANIELBREWER15@GMAIL.COM", "DANIEL", null, "AQAAAAEAACcQAAAAEAnvKqKLNPyTfG5FRLswpE+O8eu2elEI+DjI/Ni/S3XJQJ+WSQ5NHRE40pmtvHpYrQ==", null, false, "004fb476-3dc0-4dc7-8606-89d49e140905", false, null });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "0139da42-ec1e-458d-b3a8-8d78ce318bb5", 0, "2af1f004-ecbf-46c3-997d-7581ff9ff3b0", "danielbrewer15@gmail.com", true, false, null, "DANIELBREWER15@GMAIL.COM", "DANIELBREWER15@GMAIL.COM", "AQAAAAEAACcQAAAAENoC3wqyrhl+Wn5rD72sntLChJLMrlnNaec9vA5yBcIRfoMogRUUbVsj/g7pAQjeJA==", null, false, "08dc2d91-1e1e-4fdc-95d2-ca78efd7f689", false, "danielbrewer15@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Exercise", "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 2, "Study", "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 3, "Entertainment", "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 4, "Guitar Practice", "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 5, "Reading", "d7936695-8eaf-45bc-96cd-32a949797200" }
+                    { 1, "Exercise", "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 2, "Study", "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 3, "Entertainment", "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 4, "Guitar Practice", "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 5, "Reading", "0139da42-ec1e-458d-b3a8-8d78ce318bb5" }
                 });
 
             migrationBuilder.InsertData(
@@ -218,10 +223,10 @@ namespace TimeTracker.Migrations
                 columns: new[] { "Id", "CategoryId", "DatePicked", "MinutesSpent", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "d7936695-8eaf-45bc-96cd-32a949797200" },
-                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "d7936695-8eaf-45bc-96cd-32a949797200" }
+                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "0139da42-ec1e-458d-b3a8-8d78ce318bb5" },
+                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "0139da42-ec1e-458d-b3a8-8d78ce318bb5" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -262,6 +267,11 @@ namespace TimeTracker.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_UserId",
+                table: "Categories",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserCategories_CategoryId",

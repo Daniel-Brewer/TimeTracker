@@ -23,11 +23,13 @@ namespace TimeTracker.Controllers
             _context = context;
             _userManager = userManager;
         }
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.OrderBy(c => c.Title).ToListAsync());
+            var user = await GetCurrentUserAsync();
+            return View(await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync());
         }
 
         // GET: Categories/Details/5
@@ -61,8 +63,12 @@ namespace TimeTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,UserId")] Category category)
         {
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+            var user = await GetCurrentUserAsync();
             if (ModelState.IsValid)
             {
+                category.User = user;
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

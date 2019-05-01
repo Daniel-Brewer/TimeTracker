@@ -145,6 +145,8 @@ namespace TimeTracker.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Categories");
 
                     b.HasData(
@@ -152,31 +154,31 @@ namespace TimeTracker.Migrations
                         {
                             Id = 1,
                             Title = "Exercise",
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
                             Id = 2,
                             Title = "Study",
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
                             Id = 3,
                             Title = "Entertainment",
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
                             Id = 4,
                             Title = "Guitar Practice",
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
                             Id = 5,
                             Title = "Reading",
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         });
                 });
 
@@ -204,8 +206,6 @@ namespace TimeTracker.Migrations
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
-
-                    b.Property<string>("Password");
 
                     b.Property<string>("PasswordHash");
 
@@ -235,17 +235,19 @@ namespace TimeTracker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d7936695-8eaf-45bc-96cd-32a949797200",
+                            Id = "0139da42-ec1e-458d-b3a8-8d78ce318bb5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "77f556e8-67ea-4c85-92b1-767a5e5fa718",
+                            ConcurrencyStamp = "2af1f004-ecbf-46c3-997d-7581ff9ff3b0",
+                            Email = "danielbrewer15@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DANIELBREWER15@GMAIL.COM",
-                            NormalizedUserName = "DANIEL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAnvKqKLNPyTfG5FRLswpE+O8eu2elEI+DjI/Ni/S3XJQJ+WSQ5NHRE40pmtvHpYrQ==",
+                            NormalizedUserName = "DANIELBREWER15@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAENoC3wqyrhl+Wn5rD72sntLChJLMrlnNaec9vA5yBcIRfoMogRUUbVsj/g7pAQjeJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "004fb476-3dc0-4dc7-8606-89d49e140905",
-                            TwoFactorEnabled = false
+                            SecurityStamp = "08dc2d91-1e1e-4fdc-95d2-ca78efd7f689",
+                            TwoFactorEnabled = false,
+                            UserName = "danielbrewer15@gmail.com"
                         });
                 });
 
@@ -279,7 +281,7 @@ namespace TimeTracker.Migrations
                             CategoryId = 1,
                             DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
@@ -287,7 +289,7 @@ namespace TimeTracker.Migrations
                             CategoryId = 2,
                             DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
@@ -295,7 +297,7 @@ namespace TimeTracker.Migrations
                             CategoryId = 3,
                             DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         },
                         new
                         {
@@ -303,7 +305,7 @@ namespace TimeTracker.Migrations
                             CategoryId = 4,
                             DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "d7936695-8eaf-45bc-96cd-32a949797200"
+                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
                         });
                 });
 
@@ -350,6 +352,13 @@ namespace TimeTracker.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TimeTracker.Models.Category", b =>
+                {
+                    b.HasOne("TimeTracker.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TimeTracker.Models.UserCategory", b =>

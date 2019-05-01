@@ -47,8 +47,8 @@ namespace TimeTracker.Data
 
             User user = new User
             {
-                UserName = "Daniel",
-                NormalizedUserName = "DANIEL",
+                UserName = "danielbrewer15@gmail.com",
+                NormalizedUserName = "DANIELBREWER15@GMAIL.COM",
                 Email = "danielbrewer15@gmail.com",
                 NormalizedEmail = "DANIELBREWER15@GMAIL.COM",
                 EmailConfirmed = true,
