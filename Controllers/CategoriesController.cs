@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TimeTracker.Data;
 using TimeTracker.Models;
+using TimeTracker.Models.CategoriesViewModels;
 
 namespace TimeTracker.Controllers
 {
@@ -29,7 +30,9 @@ namespace TimeTracker.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            return View(await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync());
+            var model = new CategoriesIndexViewModel();
+            model.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+            return View(model);
         }
 
         // GET: Categories/Details/5
