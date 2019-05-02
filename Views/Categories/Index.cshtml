@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TimeTracker.Models.Category>
+﻿@model TimeTracker.Models.CategoriesViewModels.CategoriesIndexViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,41 +9,45 @@
 <p>
     <a asp-action="Create">Create New Category</a>
 </p>
+
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            <div class="form-group">
+                <label asp-for="UserCategory.DatePicked" class="control-label"></label>
+                <input asp-for="UserCategory.DatePicked" class="form-control" />
+                <span asp-validation-for="UserCategory.DatePicked" class="text-danger"></span>
+            </div>
+        </th>
+    </tr> 
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    <input id="demo_vertical" type="number" value="" name="demo_vertical"> Minutes
-                    <script>
+
+    @foreach (var item in Model.Categories)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <input id="demo_vertical" type="number" value="" name="demo_vertical"> Minutes
+                <script>
                     $("input[name='demo_vertical']").TouchSpin({
                        @* initval: 40  *@
                   verticalbuttons: true
                 });
-                    </script>
-                </td>
+                </script>
+            </td>
 
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    @*   <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @*   <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@<a asp-action="Details" asp-route-id="@item.Id"></a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
 
     </tbody>
 </table>
