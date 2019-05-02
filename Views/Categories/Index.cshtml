@@ -15,7 +15,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            
+
             <th></th>
         </tr>
     </thead>
@@ -44,5 +44,12 @@
                 </td>
             </tr>
         }
+
     </tbody>
 </table>
+@using (Html.BeginForm("Submit", "CategoriesController", FormMethod.Post))
+{
+
+    <input type="submit" value="Save" />
+
+}
