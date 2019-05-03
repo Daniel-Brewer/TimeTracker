@@ -16,7 +16,7 @@ namespace TimeTracker.Models
         [Required]
         public int CategoryId { get; set; }
         [Required]
-        public DateTime MinutesSpent { get; set; }
+        public int MinutesSpent { get; set; }
         [Required]
         public DateTime DatePicked { get; set; }
         public User User { get; set; }

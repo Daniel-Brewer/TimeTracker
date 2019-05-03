@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using TimeTracker.Data;
 using TimeTracker.Models;
 using TimeTracker.Models.CategoriesViewModels;
+using TimeTracker.Models.UserCategoriesViewModels;
 
 namespace TimeTracker.Controllers
 {
@@ -38,12 +39,27 @@ namespace TimeTracker.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> IndexPost(UserCategory userCategory)
-        //{
-        //    UserCategory userCategory = new UserCategory
-        //    return View();
-        //}
+        [HttpPost] 
+        public async Task<IActionResult> IndexPost(CategoriesIndexViewModel ViewModel)
+
+
+            {
+                var user = await GetCurrentUserAsync();
+                for(int i = 0; i < ViewModel.Categories.Count; i++)
+            {
+                UserCategory usercategory = new UserCategory
+                {
+                    UserId = user.Id,
+                    CategoryId = ViewModel.Categories[i].Id,
+                    MinutesSpent = ViewModel.MinutesSpentList[i],
+                    DatePicked = ViewModel.DatePicked
+                };
+                _context.Add(usercategory);
+            }
+
+            await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
