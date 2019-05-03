@@ -41,3 +41,4 @@ C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Raz
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\Details.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\Edit.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\Index.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Categories\IndexPost.g.cshtml.cs

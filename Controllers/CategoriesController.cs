@@ -27,6 +27,9 @@ namespace TimeTracker.Controllers
         private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Categories
+
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
@@ -34,6 +37,13 @@ namespace TimeTracker.Controllers
             model.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
             return View(model);
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> IndexPost(UserCategory userCategory)
+        //{
+        //    UserCategory userCategory = new UserCategory
+        //    return View();
+        //}
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
