@@ -11,7 +11,7 @@
 </p>
 <form action=" Categories/IndexPost" method="post">
     <table class="table">
-        <thead>
+        @*<thead>
             <tr>
                 <th>
                     <div class="form-group">
@@ -21,40 +21,51 @@
                     </div>
                 </th>
             </tr>
-        </thead>
+        </thead>*@
         <tbody>
-
+            <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DatePicked" class="control-label"></label>
+                    <input asp-for="DatePicked" class="form-control" />
+                    <span asp-validation-for="DatePicked" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
             @for (int i = 0; i < Model.Categories.Count; i++)
             {
-               
+
                 <tr>
-                    <td>
-                        <input type="hidden" asp-for="Categories[i].Id" />
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => Model.Categories[i].Title)
                     </td>
                     <td>
-                        <input type="number" asp-for="MinutesSpentList[i]"/>
+                        <input type="number" asp-for="MinutesSpentList[i]" />
                     </td>
 
 
                     <td>
                         <a asp-action="Edit" asp-route-id="@Model.Categories[i].Id">Edit</a> |
-                           @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                         <a asp-action="Delete" asp-route-id="@Model.Categories[i].Id">Delete</a>
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for="Categories[i].Id" />
                     </td>
                 </tr>
             }
+            @*<tr>
+                <td>
+                    <div class="form-group">
+                        <label asp-for="UserCategory.DatePicked" class="control-label"></label>
+                        <input asp-for="UserCategory.DatePicked" class="form-control" />
+                        <span asp-validation-for="UserCategory.DatePicked" class="text-danger"></span>
+                    </div>
+                </td>
+            </tr>*@
 
         </tbody>
     </table>
+
     <input type="Submit" value="Save" />
-
-@*      @using (Html.BeginForm("Submit", "CategoriesController", FormMethod.Post))
-       {
-
-        <input type="submit" value="Save" />
-
-    }*@
     </form>

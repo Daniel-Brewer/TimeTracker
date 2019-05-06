@@ -39,7 +39,7 @@ namespace TimeTracker.Controllers
             return View(model);
         }
 
-        [HttpPost] 
+        [HttpPost]
         public async Task<IActionResult> IndexPost(CategoriesIndexViewModel ViewModel)
 
 

@@ -18,6 +18,10 @@ namespace TimeTracker.Models
         [Required]
         public int MinutesSpent { get; set; }
         [Required]
+        //public DateTime DatePicked { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "DatePicked:")]
         public DateTime DatePicked { get; set; }
         public User User { get; set; }
         public Category Category { get; set; }
