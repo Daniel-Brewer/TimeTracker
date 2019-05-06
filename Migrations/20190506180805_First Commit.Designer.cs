@@ -10,7 +10,7 @@ using TimeTracker.Data;
 namespace TimeTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190503205115_First Commit")]
+    [Migration("20190506180805_First Commit")]
     partial class FirstCommit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,31 +156,31 @@ namespace TimeTracker.Migrations
                         {
                             Id = 1,
                             Title = "Exercise",
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 2,
                             Title = "Study",
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 3,
                             Title = "Entertainment",
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 4,
                             Title = "Guitar Practice",
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 5,
                             Title = "Reading",
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         });
                 });
 
@@ -237,17 +237,17 @@ namespace TimeTracker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9a033075-1b22-42e6-a21e-0784b493620d",
+                            Id = "3daff415-0425-48e6-b0e8-acd53bbefbce",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a61b288d-40ba-4129-bcfc-23349769784a",
+                            ConcurrencyStamp = "9b19d43b-0771-48da-862d-d728be5bfeb2",
                             Email = "danielbrewer15@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DANIELBREWER15@GMAIL.COM",
                             NormalizedUserName = "DANIELBREWER15@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAOmnD3i/dy0q3nlgjFZQHLgU7R1wyou3uqa6IXvXqVDgCZITaLjJrO1xxtlUveczg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIMwpeDVjYjTMoDsGHd51BNm+IPh+2uVapqIg6sPiMRcJLsSEdCpPdi5hEi1smJRtg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "680642d4-d761-471d-b87f-e6ae15929da3",
+                            SecurityStamp = "4dc8e810-87c0-47b4-9b69-9cc6dc0ad72f",
                             TwoFactorEnabled = false,
                             UserName = "danielbrewer15@gmail.com"
                         });
@@ -275,40 +275,6 @@ namespace TimeTracker.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = 0,
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 2,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = 0,
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 3,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = 0,
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 4,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = 0,
-                            UserId = "9a033075-1b22-42e6-a21e-0784b493620d"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

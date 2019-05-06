@@ -103,39 +103,6 @@ namespace TimeTracker.Data
 
             );
 
-            modelBuilder.Entity<UserCategory>().HasData(
-                new UserCategory()
-                {
-                    Id = 1,
-                    UserId = user.Id,
-                    CategoryId = 1
-                }
-            );
-
-            modelBuilder.Entity<UserCategory>().HasData(
-                new UserCategory()
-                {
-                    Id = 2,
-                    UserId = user.Id,
-                    CategoryId = 2
-                }
-             );
-            modelBuilder.Entity<UserCategory>().HasData(
-                new UserCategory()
-                {
-                    Id = 3,
-                    UserId = user.Id,
-                    CategoryId = 3
-                }
-            );
-            modelBuilder.Entity<UserCategory>().HasData(
-                new UserCategory()
-                {
-                    Id = 4,
-                    UserId = user.Id,
-                    CategoryId = 4
-                }
-            );
         }
     }
 }

@@ -204,29 +204,18 @@ namespace TimeTracker.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "9a033075-1b22-42e6-a21e-0784b493620d", 0, "a61b288d-40ba-4129-bcfc-23349769784a", "danielbrewer15@gmail.com", true, false, null, "DANIELBREWER15@GMAIL.COM", "DANIELBREWER15@GMAIL.COM", "AQAAAAEAACcQAAAAEAOmnD3i/dy0q3nlgjFZQHLgU7R1wyou3uqa6IXvXqVDgCZITaLjJrO1xxtlUveczg==", null, false, "680642d4-d761-471d-b87f-e6ae15929da3", false, "danielbrewer15@gmail.com" });
+                values: new object[] { "3daff415-0425-48e6-b0e8-acd53bbefbce", 0, "9b19d43b-0771-48da-862d-d728be5bfeb2", "danielbrewer15@gmail.com", true, false, null, "DANIELBREWER15@GMAIL.COM", "DANIELBREWER15@GMAIL.COM", "AQAAAAEAACcQAAAAEIMwpeDVjYjTMoDsGHd51BNm+IPh+2uVapqIg6sPiMRcJLsSEdCpPdi5hEi1smJRtg==", null, false, "4dc8e810-87c0-47b4-9b69-9cc6dc0ad72f", false, "danielbrewer15@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Exercise", "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 2, "Study", "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 3, "Entertainment", "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 4, "Guitar Practice", "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 5, "Reading", "9a033075-1b22-42e6-a21e-0784b493620d" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "UserCategories",
-                columns: new[] { "Id", "CategoryId", "DatePicked", "MinutesSpent", "UserId" },
-                values: new object[,]
-                {
-                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "9a033075-1b22-42e6-a21e-0784b493620d" },
-                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "9a033075-1b22-42e6-a21e-0784b493620d" }
+                    { 1, "Exercise", "3daff415-0425-48e6-b0e8-acd53bbefbce" },
+                    { 2, "Study", "3daff415-0425-48e6-b0e8-acd53bbefbce" },
+                    { 3, "Entertainment", "3daff415-0425-48e6-b0e8-acd53bbefbce" },
+                    { 4, "Guitar Practice", "3daff415-0425-48e6-b0e8-acd53bbefbce" },
+                    { 5, "Reading", "3daff415-0425-48e6-b0e8-acd53bbefbce" }
                 });
 
             migrationBuilder.CreateIndex(

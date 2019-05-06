@@ -180,6 +180,15 @@ namespace TimeTracker.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Categories.FindAsync(id);
+
+            var usercategory = _context.UserCategories;
+            foreach (UserCategory item in usercategory)
+            {
+                if (item.CategoryId == category.Id)
+                {
+                    usercategory.Remove(item);
+                }
+            }
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
