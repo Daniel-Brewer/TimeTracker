@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,17 +13,22 @@ namespace TimeTracker.Controllers
 {
     public class UserCategoriesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public UserCategoriesController(ApplicationDbContext context)
+        public UserCategoriesController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        private readonly ApplicationDbContext _context;
+
 
         // GET: UserCategories
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User);
+            var user = await GetCurrentUserAsync();
+            var applicationDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User).Where(u => u.User.Id == user.Id) ;
             return View(await applicationDbContext.ToListAsync());
         }
 

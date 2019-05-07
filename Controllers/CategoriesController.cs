@@ -113,6 +113,7 @@ namespace TimeTracker.Controllers
                 return NotFound();
             }
 
+            var userCategory = await _context.UserCategories.FindAsync(id);
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
