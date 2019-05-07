@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using TimeTracker.Data;
 using TimeTracker.Models;
 using TimeTracker.Models.CategoriesViewModels;
+using TimeTracker.Models.UserCategoriesViewModels;
 
 namespace TimeTracker.Controllers
 {
@@ -27,6 +28,9 @@ namespace TimeTracker.Controllers
         private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Categories
+
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
@@ -34,6 +38,28 @@ namespace TimeTracker.Controllers
             model.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> IndexPost(CategoriesIndexViewModel ViewModel)
+
+
+            {
+                var user = await GetCurrentUserAsync();
+                for(int i = 0; i < ViewModel.Categories.Count; i++)
+            {
+                UserCategory usercategory = new UserCategory
+                {
+                    UserId = user.Id,
+                    CategoryId = ViewModel.Categories[i].Id,
+                    MinutesSpent = ViewModel.MinutesSpentList[i],
+                    DatePicked = ViewModel.DatePicked
+                };
+                _context.Add(usercategory);
+            }
+
+            await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -87,6 +113,7 @@ namespace TimeTracker.Controllers
                 return NotFound();
             }
 
+            var userCategory = await _context.UserCategories.FindAsync(id);
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
@@ -94,6 +121,23 @@ namespace TimeTracker.Controllers
             }
             return View(category);
         }
+
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var userCategory = await _context.UserCategories.FindAsync(id);
+        //    if (userCategory == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
+        //    ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
+        //    return View(userCategory);
+        //}
 
         // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -113,6 +157,7 @@ namespace TimeTracker.Controllers
                 {
                     _context.Update(category);
                     await _context.SaveChangesAsync();
+                    var usercategory = _context.UserCategories;
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -129,6 +174,47 @@ namespace TimeTracker.Controllers
             }
             return View(category);
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,MinutesSpent,DatePicked")] UserCategory userCategory)
+        //{
+        //    var category = _context.Categories;
+        //    if (id != userCategory.Id)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //                _context.Update(category);
+        //                _context.Update(userCategory);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!UserCategoryExists(userCategory.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
+        //    ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
+        //    return View(userCategory);
+        //}
+
+        //private bool UserCategoryExists(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -154,6 +240,15 @@ namespace TimeTracker.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Categories.FindAsync(id);
+
+            var usercategory = _context.UserCategories;
+            foreach (UserCategory item in usercategory)
+            {
+                if (item.CategoryId == category.Id)
+                {
+                    usercategory.Remove(item);
+                }
+            }
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

@@ -154,31 +154,31 @@ namespace TimeTracker.Migrations
                         {
                             Id = 1,
                             Title = "Exercise",
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 2,
                             Title = "Study",
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 3,
                             Title = "Entertainment",
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 4,
                             Title = "Guitar Practice",
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         },
                         new
                         {
                             Id = 5,
                             Title = "Reading",
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
+                            UserId = "3daff415-0425-48e6-b0e8-acd53bbefbce"
                         });
                 });
 
@@ -235,17 +235,17 @@ namespace TimeTracker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0139da42-ec1e-458d-b3a8-8d78ce318bb5",
+                            Id = "3daff415-0425-48e6-b0e8-acd53bbefbce",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2af1f004-ecbf-46c3-997d-7581ff9ff3b0",
+                            ConcurrencyStamp = "9b19d43b-0771-48da-862d-d728be5bfeb2",
                             Email = "danielbrewer15@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DANIELBREWER15@GMAIL.COM",
                             NormalizedUserName = "DANIELBREWER15@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENoC3wqyrhl+Wn5rD72sntLChJLMrlnNaec9vA5yBcIRfoMogRUUbVsj/g7pAQjeJA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIMwpeDVjYjTMoDsGHd51BNm+IPh+2uVapqIg6sPiMRcJLsSEdCpPdi5hEi1smJRtg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "08dc2d91-1e1e-4fdc-95d2-ca78efd7f689",
+                            SecurityStamp = "4dc8e810-87c0-47b4-9b69-9cc6dc0ad72f",
                             TwoFactorEnabled = false,
                             UserName = "danielbrewer15@gmail.com"
                         });
@@ -261,7 +261,7 @@ namespace TimeTracker.Migrations
 
                     b.Property<DateTime>("DatePicked");
 
-                    b.Property<DateTime>("MinutesSpent");
+                    b.Property<int>("MinutesSpent");
 
                     b.Property<string>("UserId")
                         .IsRequired();
@@ -273,40 +273,6 @@ namespace TimeTracker.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 2,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 3,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 4,
-                            DatePicked = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MinutesSpent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "0139da42-ec1e-458d-b3a8-8d78ce318bb5"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
