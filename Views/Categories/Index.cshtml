@@ -11,17 +11,7 @@
 </p>
 <form action=" Categories/IndexPost" method="post">
     <table class="table">
-        @*<thead>
-            <tr>
-                <th>
-                    <div class="form-group">
-                        <label asp-for="UserCategory.DatePicked" class="control-label"></label>
-                        <input asp-for="UserCategory.DatePicked" class="form-control" />
-                        <span asp-validation-for="UserCategory.DatePicked" class="text-danger"></span>
-                    </div>
-                </th>
-            </tr>
-        </thead>*@
+
         <tbody>
             <tr>
             <td>
@@ -46,7 +36,8 @@
 
 
                     <td>
-                        <a asp-action="Edit" asp-route-id="@Model.Categories[i].Id">Edit</a> |
+                        <a asp-controller="UserCategories" asp-action="Edit" asp-route-id="@Model.Categories[i].Id">Edit</a>
+                        @*<a asp-action="Edit" asp-route-id="@Model.Categories[i].Id">Edit</a> |*@
                         @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                         @*<a asp-area="" asp-controller="UserCategories" asp-action="Delete" asp-route-id="@Model.Categories[i].Id">Delete</a>*@
                         <a asp-action="Delete" asp-route-id="@Model.Categories[i].Id">Delete</a>
@@ -56,15 +47,6 @@
                     </td>
                 </tr>
             }
-            @*<tr>
-                <td>
-                    <div class="form-group">
-                        <label asp-for="UserCategory.DatePicked" class="control-label"></label>
-                        <input asp-for="UserCategory.DatePicked" class="form-control" />
-                        <span asp-validation-for="UserCategory.DatePicked" class="text-danger"></span>
-                    </div>
-                </td>
-            </tr>*@
 
         </tbody>
     </table>
