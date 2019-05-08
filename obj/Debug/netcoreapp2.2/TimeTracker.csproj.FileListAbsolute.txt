@@ -36,7 +36,6 @@ C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Raz
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Categories\Index.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Home\Create.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Categories\Edit.g.cshtml.cs
-C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Categories\IndexPost.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\UserCategories\Create.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\UserCategories\Delete.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\UserCategories\Details.g.cshtml.cs
