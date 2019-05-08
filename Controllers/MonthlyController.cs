@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +12,6 @@ namespace TimeTracker.Controllers
 {
     public class MonthlyController : Controller
     {
-        private readonly UserManager<User> _userManager;
-
-        public MonthlyController(ApplicationDbContext context, UserManager<User> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
-        }
-        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         private readonly ApplicationDbContext _context;
 
         public MonthlyController(ApplicationDbContext context)
@@ -31,7 +22,8 @@ namespace TimeTracker.Controllers
         // GET: Monthly
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.ToListAsync());
+            var applicationDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Monthly/Details/5
@@ -42,19 +34,23 @@ namespace TimeTracker.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var userCategory = await _context.UserCategories
+                .Include(u => u.Category)
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (userCategory == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(userCategory);
         }
 
         // GET: Monthly/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id");
             return View();
         }
 
@@ -63,15 +59,17 @@ namespace TimeTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,UserId")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,UserId,CategoryId,MinutesSpent,DatePicked")] UserCategory userCategory)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(userCategory);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
+            return View(userCategory);
         }
 
         // GET: Monthly/Edit/5
@@ -82,12 +80,14 @@ namespace TimeTracker.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var userCategory = await _context.UserCategories.FindAsync(id);
+            if (userCategory == null)
             {
                 return NotFound();
             }
-            return View(category);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
+            return View(userCategory);
         }
 
         // POST: Monthly/Edit/5
@@ -95,9 +95,9 @@ namespace TimeTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,UserId")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,MinutesSpent,DatePicked")] UserCategory userCategory)
         {
-            if (id != category.Id)
+            if (id != userCategory.Id)
             {
                 return NotFound();
             }
@@ -106,12 +106,12 @@ namespace TimeTracker.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(userCategory);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))
+                    if (!UserCategoryExists(userCategory.Id))
                     {
                         return NotFound();
                     }
@@ -122,7 +122,9 @@ namespace TimeTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
+            return View(userCategory);
         }
 
         // GET: Monthly/Delete/5
@@ -133,14 +135,16 @@ namespace TimeTracker.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var userCategory = await _context.UserCategories
+                .Include(u => u.Category)
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (userCategory == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(userCategory);
         }
 
         // POST: Monthly/Delete/5
@@ -148,15 +152,15 @@ namespace TimeTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(category);
+            var userCategory = await _context.UserCategories.FindAsync(id);
+            _context.UserCategories.Remove(userCategory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool UserCategoryExists(int id)
         {
-            return _context.Categories.Any(e => e.Id == id);
+            return _context.UserCategories.Any(e => e.Id == id);
         }
     }
 }
