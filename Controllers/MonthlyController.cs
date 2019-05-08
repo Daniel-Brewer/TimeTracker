@@ -30,6 +30,16 @@ namespace TimeTracker.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> IndexMonth()
+        {
+            var user = await GetCurrentUserAsync();
+            var applicationDbContext = _context.UserCategories
+                .Include(u => u.Category)
+                .Include(u => u.User)
+                .Where(u => u.UserId == user.Id);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
         // GET: Monthly/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -37,10 +47,10 @@ namespace TimeTracker.Controllers
             {
                 return NotFound();
             }
-
+            var user = await GetCurrentUserAsync();
             var userCategory = await _context.UserCategories
                 .Include(u => u.Category)
-                .Include(u => u.User)
+                .Include(u => u.User).Where(u => u.UserId == user.Id)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (userCategory == null)
             {
