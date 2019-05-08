@@ -28,23 +28,18 @@
         </tr>
     </thead>
     <tbody>
-        @*@var January = []
-        @var February = []
-        @var March = []
-        @var April = []
-        @var May = []
-        @var June = []
-        @var July = []
-        @var August = []
-        @var September = []
-        @var October = []
-        @var November = []
-        @var December = []*@
+        @Html.RouteLink("January", new { action = "Details", controller = "Monthly", area = "Admin" })
 
         @foreach (var item in Model)
         {
+
             <tr>
                 <td>
+                    SELECT SUM(MinutesSpent)
+                    FROM UserCategories
+                    WHERE DatePicked BETWEEN '20190101' AND '20190131'
+                </td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.MinutesSpent)
                 </td>
                 <td>
@@ -60,7 +55,7 @@
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>
