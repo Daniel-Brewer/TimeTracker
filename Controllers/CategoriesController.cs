@@ -35,6 +35,7 @@ namespace TimeTracker.Controllers
         {
             var user = await GetCurrentUserAsync();
             var model = new CategoriesIndexViewModel();
+            model.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
             model.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
             return View(model);
         }
@@ -42,10 +43,10 @@ namespace TimeTracker.Controllers
         [HttpPost]
         public async Task<IActionResult> IndexPost(CategoriesIndexViewModel ViewModel)
 
-
             {
                 var user = await GetCurrentUserAsync();
-                for(int i = 0; i < ViewModel.Categories.Count; i++)
+                ViewModel.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+            for (int i = 0; i < ViewModel.Categories.Count; i++)
             {
                 UserCategory usercategory = new UserCategory
                 {
@@ -54,7 +55,17 @@ namespace TimeTracker.Controllers
                     MinutesSpent = ViewModel.MinutesSpentList[i],
                     DatePicked = ViewModel.DatePicked
                 };
-                _context.Add(usercategory);
+                for (int j = 0; j < ViewModel.UserCategories.Count; j++)
+                {
+                    if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
+                    {
+                        return View("InvalidEntry");
+                    }
+                    else
+                    {
+                        _context.Add(usercategory);
+                    }
+                }
             }
 
             await _context.SaveChangesAsync();
