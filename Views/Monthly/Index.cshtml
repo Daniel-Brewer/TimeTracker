@@ -4,64 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Month Links</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MinutesSpent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatePicked)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
+
     </thead>
     <tbody>
-        @*@var January = []
-        @var February = []
-        @var March = []
-        @var April = []
-        @var May = []
-        @var June = []
-        @var July = []
-        @var August = []
-        @var September = []
-        @var October = []
-        @var November = []
-        @var December = []*@
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MinutesSpent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DatePicked)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Id)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+        <ul>
+            <li>
+                @Html.RouteLink("January", new { action = "IndexMonth1", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("February", new { action = "IndexMonth2", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("March", new { action = "IndexMonth3", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("April", new { action = "IndexMonth4", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("May", new { action = "IndexMonth5", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("June", new { action = "IndexMonth6", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("July", new { action = "IndexMonth7", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("August", new { action = "IndexMonth8", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("September", new { action = "IndexMonth9", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("October", new { action = "IndexMonth10", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("November", new { action = "IndexMonth11", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("December", new { action = "IndexMonth12", controller = "Monthly", })
+            </li>
+        </ul>
+</tbody>
 </table>
