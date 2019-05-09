@@ -27,14 +27,14 @@
     </thead>
     <tbody>
 
-        @{ int runningTotal = 0; } 
+        @*@{ int runningTotal = 0; }*@ 
         @foreach (var item in Model)
         {
-            runningTotal += item.MinutesSpent;
+            //runningTotal += item.MinutesSpent;
     <tr>
         <td>@Html.DisplayFor(modelItem => item.Category.Title)</td>
         <td>@Html.DisplayFor(modelItem => item.MinutesSpent)</td>
-        <td>@runningTotal</td>
+        @*<td>@runningTotal</td>*@
     </tr>
 }
 
