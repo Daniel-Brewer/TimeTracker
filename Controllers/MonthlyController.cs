@@ -37,7 +37,14 @@ namespace TimeTracker.Controllers
                 .Include(u => u.Category)
                 .Include(u => u.User)
                 .Where(u => u.UserId == user.Id)
-                .Where(u => u.DatePicked >= DateTime.Parse("2019-01-01") && u.DatePicked <= DateTime.Parse("2019-01-31"));
+                .Where(u => u.DatePicked >= DateTime.Parse("2019-01-01") && u.DatePicked <= DateTime.Parse("2019-01-31"))
+                .GroupBy(u => u.Category)
+                .Select(g =>  new UserCategory
+            {
+                User = user,
+                Category = g.Key,
+                MinutesSpent = g.Sum(uc => uc.MinutesSpent)
+            });
             return View(await applicationDbContext.ToListAsync());
         }
 
