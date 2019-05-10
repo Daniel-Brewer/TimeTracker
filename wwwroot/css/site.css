@@ -42,8 +42,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #B8C276;
 }
 .footer {
   position: absolute;
@@ -57,3 +58,6 @@ body {
 .navbar-nav .btn {
     border: 0;
 }
+
+    
+
