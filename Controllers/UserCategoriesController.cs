@@ -28,7 +28,7 @@ namespace TimeTracker.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            var applicationDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User).Where(u => u.User.Id == user.Id) ;
+            var applicationDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User).Where(u => u.User.Id == user.Id).OrderByDescending(u => u.DatePicked); ;
             return View(await applicationDbContext.ToListAsync());
         }
 

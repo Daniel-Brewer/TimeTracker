@@ -43,37 +43,42 @@ namespace TimeTracker.Controllers
         [HttpPost]
         public async Task<IActionResult> IndexPost(CategoriesIndexViewModel ViewModel)
 
-            {
-                var user = await GetCurrentUserAsync();
-                ViewModel.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
-            for (int i = 0; i < ViewModel.Categories.Count; i++)
-            {
-                UserCategory usercategory = new UserCategory
-                {
-                    UserId = user.Id,
-                    CategoryId = ViewModel.Categories[i].Id,
-                    MinutesSpent = ViewModel.MinutesSpentList[i],
-                    DatePicked = ViewModel.DatePicked
-                };
-                for (int j = 0; j < ViewModel.UserCategories.Count; j++)
-                {
-                    if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
-                    {
-                        return View("InvalidEntry");
-                    }
-                    else
-                    {
-                        _context.Add(usercategory);
-                    }
-                }
-            }
+        {
+            var user = await GetCurrentUserAsync();
+            ViewModel.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
 
-            await _context.SaveChangesAsync();
+            if (ViewModel.Categories.Count == ViewModel.MinutesSpentList.Count) {
+                for (int i = 0; i < ViewModel.Categories.Count; i++)
+                {
+                    UserCategory usercategory = new UserCategory
+                    {
+                        UserId = user.Id,
+                        CategoryId = ViewModel.Categories[i].Id,
+                        MinutesSpent = ViewModel.MinutesSpentList[i],
+                        DatePicked = ViewModel.DatePicked
+                    };
+                    for (int j = 0; j < ViewModel.UserCategories.Count; j++)
+                    {
+                        if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
+                        {
+                            return View("InvalidEntry");
+                        }
+
+                    }
+                    _context.Add(usercategory);
+                }
+
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                return View("InvalidEntry2");
+            }
+        }
 
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: Categories/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
