@@ -10,6 +10,7 @@
     <a asp-action="Create">Create New Category</a>
 </p>
 <form action=" Categories/IndexPost" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <table class="table">
 
         <tbody>
@@ -36,7 +37,7 @@
                     </td>
                     <td>
                         <input type="number" asp-for="MinutesSpentList[i]" />
-                        <span asp-validation-for="MinutesSpentList[i]" class="text-danger"></span>
+                        <span asp-validation-for="UserCategories[i].MinutesSpent" class="text-danger"></span>
 
                     </td>
 

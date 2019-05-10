@@ -46,7 +46,8 @@ namespace TimeTracker.Controllers
         {
             var user = await GetCurrentUserAsync();
             ViewModel.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
-            if (ViewModel.Categories.Count > 0) {
+
+            if (ViewModel.Categories.Count == ViewModel.MinutesSpentList.Count) {
                 for (int i = 0; i < ViewModel.Categories.Count; i++)
                 {
                     UserCategory usercategory = new UserCategory

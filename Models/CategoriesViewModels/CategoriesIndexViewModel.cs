@@ -17,6 +17,8 @@ namespace TimeTracker.Models.CategoriesViewModels
         [Required]
         public List<UserCategory> UserCategories { get; set; }
         [Required]
+        public int MinutesSpent { get; set; }
+        [Required]
         public List<int> MinutesSpentList { get; set; }
         [Required]
         [DataType(DataType.Date)]
