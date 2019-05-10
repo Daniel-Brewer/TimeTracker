@@ -61,12 +61,11 @@ namespace TimeTracker.Controllers
                     {
                         if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
                         {
-                            return View("CategoriesIndexViewModel");
+                            return View("InvalidEntry");
                         }
 
                     }
                     _context.Add(usercategory);
-
                 }
 
                 await _context.SaveChangesAsync();
