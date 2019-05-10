@@ -8,11 +8,17 @@ namespace TimeTracker.Models.CategoriesViewModels
 {
     public class CategoriesIndexViewModel
     {
+        [Required]
         public Category Category { get; set; }
+        [Required]
         public UserCategory UserCategory { get; set; }
+        [Required]
         public List<Category> Categories { get; set; }
+        [Required]
         public List<UserCategory> UserCategories { get; set; }
+        [Required]
         public List<int> MinutesSpentList { get; set; }
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "DatePicked:")]

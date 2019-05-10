@@ -59,3 +59,4 @@ C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Raz
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\IndexMonth11.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\IndexMonth12.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Categories\InvalidEntry.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Categories\InvalidEntry2.g.cshtml.cs
