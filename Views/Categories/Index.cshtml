@@ -15,13 +15,22 @@
 
         <tbody>
             <tr>
-            <td>
-                <div class="form-group">
-                    <label asp-for="DatePicked" class="control-label"></label>
-                    <input asp-for="DatePicked" class="form-control" />
-                    <span asp-validation-for="DatePicked" class="text-danger"></span>
-                 </div>
-            </td>
+                <td>
+                    @*<div class="form-group">
+           <label asp-for="DatePicked" class="control-label"></label>
+           <input asp-for="DatePicked" class="form-control" />
+           <span asp-validation-for="DatePicked" class="text-danger"></span>
+        </div>*@
+
+                    <!-- How to insert a date editor in a Razor view -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DatePicked, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.DatePicked, new { @type = "date", @class = "form-control datepicker", @Value = Model.DatePicked.ToString("yyyy-MM-dd") })
+                            @Html.ValidationMessageFor(model => model.DatePicked, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
         </tr>
               @*@foreach (var item in Model.UserCategories)
               {
