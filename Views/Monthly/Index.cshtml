@@ -1,54 +1,71 @@
-﻿@model IEnumerable<TimeTracker.Models.UserCategory>
+﻿@model TimeTracker.Models.MonthlyViewModels.MonthlyIndexViewModel
 
-@{
-    ViewData["Title"] = "Index";
-}
+@using System.Globalization;
 
-<h1>Month Links</h1>
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h1>Select a Month</h1>
+
+    <form action=" Categories/IndexMonth1" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <table class="table">
+            <thead>
+
+            </thead>
+            <tbody>
 
 
-<table class="table">
-    <thead>
 
-    </thead>
-    <tbody>
-        <ul>
-            <li>
-                @Html.RouteLink("January", new { action = "IndexMonth1", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("February", new { action = "IndexMonth2", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("March", new { action = "IndexMonth3", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("April", new { action = "IndexMonth4", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("May", new { action = "IndexMonth5", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("June", new { action = "IndexMonth6", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("July", new { action = "IndexMonth7", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("August", new { action = "IndexMonth8", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("September", new { action = "IndexMonth9", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("October", new { action = "IndexMonth10", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("November", new { action = "IndexMonth11", controller = "Monthly", })
-            </li>
-            <li>
-                @Html.RouteLink("December", new { action = "IndexMonth12", controller = "Monthly", })
-            </li>
-        </ul>
-</tbody>
-</table>
+                <select id="month">
+                    @for (Int16 i = 0; i < 12; i++)
+                    {
+                        <option value="@i">@DateTimeFormatInfo.InvariantInfo.MonthNames[i]</option>
+                    }
+                </select>
+
+
+
+                @*<ul>
+                    <li>
+                        @Html.RouteLink("January", new { action = "IndexMonth1", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("February", new { action = "IndexMonth2", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("March", new { action = "IndexMonth3", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("April", new { action = "IndexMonth4", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("May", new { action = "IndexMonth5", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("June", new { action = "IndexMonth6", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("July", new { action = "IndexMonth7", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("August", new { action = "IndexMonth8", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("September", new { action = "IndexMonth9", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("October", new { action = "IndexMonth10", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("November", new { action = "IndexMonth11", controller = "Monthly", })
+                    </li>
+                    <li>
+                        @Html.RouteLink("December", new { action = "IndexMonth12", controller = "Monthly", })
+                    </li>
+                </ul>*@
+            </tbody>
+        </table>
+        <input type="Submit" value="Save" />
+    </form>

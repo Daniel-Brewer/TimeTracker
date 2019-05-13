@@ -9,7 +9,6 @@ namespace TimeTracker.Models
     public class Category
     {
         public int Id { get; set; }
-        [Required]
         public string Title { get; set; }
         public string UserId { get; set; }
         //public DateTime DatePicked { get; set; }

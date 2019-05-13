@@ -8,13 +8,13 @@ namespace TimeTracker.Models.CategoriesViewModels
 {
     public class CategoriesIndexViewModel
     {
-        [Required]
+   
         public Category Category { get; set; }
-        [Required]
+      
         public UserCategory UserCategory { get; set; }
-        [Required]
+      
         public List<Category> Categories { get; set; }
-        [Required]
+     
         public List<UserCategory> UserCategories { get; set; }
         [Required]
         public int MinutesSpent { get; set; }
