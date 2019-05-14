@@ -90,14 +90,17 @@ namespace TimeTracker.Controllers
                 ModelState.Remove("Category");
                 ModelState.Remove("UserCategories");
                 ModelState.Remove("Categories.Title");
+
                 if (ModelState.IsValid)
                 {
-                    bool DatePickedAlreadyEntered = true;
-                    if (DatePickedAlreadyEntered)
+                    bool NoDataEntered = true;
+                    if (NoDataEntered)
                     {
-                        ModelState.AddModelError(string.Empty, "Date already entered.");
+                        ModelState.AddModelError(string.Empty, "Please enter data.");
                         return View(ViewModel);
                     }
+                    //await _context.SaveChangesAsync();
+                    //return RedirectToAction("Index", "Categories");
 
                 }
                 return View("InvalidEntry2");

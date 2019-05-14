@@ -19,7 +19,14 @@ namespace TimeTracker.Models.MonthlyViewModels
                            Value = (index + 1).ToString(),
                            Text = monthName
                        });
+        public int MonthId { get; set; }
+
+        public int YearId { get; set; }
+        public IEnumerable <SelectListItem> Years = new SelectList(Enumerable.Range(2018, (DateTime.Now.Year - 2018) + 1));
     }
+
+   
+    
     //public DateTime MonthPicked (int year, int month, int day);
 }
 

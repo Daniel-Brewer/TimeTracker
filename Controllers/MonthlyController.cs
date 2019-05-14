@@ -32,7 +32,7 @@ namespace TimeTracker.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> IndexMonth1(MonthlyIndexViewModel ViewModel)
+        public async Task<IActionResult> IndexMonth1(MonthlyIndexViewModel viewModel)
         {
             
             var user = await GetCurrentUserAsync();
@@ -40,8 +40,10 @@ namespace TimeTracker.Controllers
                 .Include(u => u.Category)
                 .Include(u => u.User)
                 .Where(u => u.UserId == user.Id)
-                .Where(u => u.DatePicked >= DateTime.Parse("2019-01-01") && u.DatePicked <= DateTime.Parse("2019-01-31"))
-                //.Where(u => u.DatePicked >= DateTime SelectedMonth BETWEEN ( , , ) AND ( , , )
+                //.Where(u => u.DatePicked >= DateTime.Parse("2019-01-01") && u.DatePicked <= DateTime.Parse("2019-01-31"))
+                //.Where(u => u.DatePicked >= DateTime.AddDays BETWEEN (yearId, monthId, 1) AND (yearId, monthId, 1)
+                .Where(u => u.DatePicked.Month == viewModel.MonthId)
+                .Where(u => u.DatePicked.Year == viewModel.YearId)
                 .GroupBy(u => u.Category)
                 .Select(g =>  new UserCategory
             {
