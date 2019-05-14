@@ -4156,6 +4156,7 @@ input[type="button"].btn-block {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  background-color: #697A4A;
 }
 
 .navbar > .container,
@@ -4168,6 +4169,7 @@ input[type="button"].btn-block {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  background-color:#B8C276;
 }
 
 .navbar-brand {
@@ -4185,13 +4187,14 @@ input[type="button"].btn-block {
 }
 
 .navbar-nav {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #94A97C;
 }
 
 .navbar-nav .nav-link {
@@ -4260,6 +4263,7 @@ input[type="button"].btn-block {
   .navbar-expand-sm .navbar-nav {
     -ms-flex-direction: row;
     flex-direction: row;
+
   }
   .navbar-expand-sm .navbar-nav .dropdown-menu {
     position: absolute;
@@ -5085,10 +5089,10 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .jumbotron {
-  padding: 2rem 1rem;
-  margin-bottom: 2rem;
-  background-color: #e9ecef;
-  border-radius: 0.3rem;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #697A4A;
+    border-radius: 0.3rem;
 }
 
 @media (min-width: 576px) {

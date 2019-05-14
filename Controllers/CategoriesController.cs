@@ -41,7 +41,7 @@ namespace TimeTracker.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> IndexPost(CategoriesIndexViewModel ViewModel)
+        public async Task<IActionResult> Index(CategoriesIndexViewModel ViewModel)
 
         {
             var user = await GetCurrentUserAsync();
@@ -61,7 +61,19 @@ namespace TimeTracker.Controllers
                     {
                         if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
                         {
-                            return View("InvalidEntry");
+                            ModelState.Remove("Category");
+                            ModelState.Remove("Categories");
+                            ModelState.Remove("Categories.Title");
+                            if (ModelState.IsValid)
+                            {
+                                bool DatePickedAlreadyEntered = true;
+                                if (DatePickedAlreadyEntered)
+                                {
+                                    ModelState.AddModelError(string.Empty, "Date already entered.");
+                                    return View(ViewModel);
+                                }
+                                
+                            }
                         }
 
                     }
@@ -69,10 +81,28 @@ namespace TimeTracker.Controllers
                 }
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "UserCategories");
             }
             else
             {
+                ModelState.Remove("Category");
+                ModelState.Remove("Categories");
+                ModelState.Remove("Category");
+                ModelState.Remove("UserCategories");
+                ModelState.Remove("Categories.Title");
+
+                if (ModelState.IsValid)
+                {
+                    bool NoDataEntered = true;
+                    if (NoDataEntered)
+                    {
+                        ModelState.AddModelError(string.Empty, "Please enter data.");
+                        return View(ViewModel);
+                    }
+                    //await _context.SaveChangesAsync();
+                    //return RedirectToAction("Index", "Categories");
+
+                }
                 return View("InvalidEntry2");
             }
         }
