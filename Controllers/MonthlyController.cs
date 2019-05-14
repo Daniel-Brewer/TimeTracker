@@ -34,13 +34,14 @@ namespace TimeTracker.Controllers
 
         public async Task<IActionResult> IndexMonth1(MonthlyIndexViewModel ViewModel)
         {
-            //@Html.DropDownListFor(x => x.SelectedMonth, Model.Months)
+            
             var user = await GetCurrentUserAsync();
             var applicationDbContext = _context.UserCategories
                 .Include(u => u.Category)
                 .Include(u => u.User)
                 .Where(u => u.UserId == user.Id)
                 .Where(u => u.DatePicked >= DateTime.Parse("2019-01-01") && u.DatePicked <= DateTime.Parse("2019-01-31"))
+                //.Where(u => u.DatePicked >= DateTime SelectedMonth BETWEEN ( , , ) AND ( , , )
                 .GroupBy(u => u.Category)
                 .Select(g =>  new UserCategory
             {

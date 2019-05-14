@@ -14,9 +14,6 @@
 
                 </thead>
                 <tbody>
-
-
-
                     <select id="month">
                         @for (Int16 i = 0; i < 12; i++)
                         {
@@ -24,46 +21,69 @@
                         }
                     </select>
 
+                    <select id="year">
+                        {
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        }
+                    </select>
+
+
+
+
+
+
+                    @*<div class="form-group">
+            @Html.LabelFor(model => model.SelectMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SelectMonth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SelectMonth, "", new { @class = "text-danger" })
+
+            </div>
+        </div>*@
 
 
                     @*<ul>
-                        <li>
-                            @Html.RouteLink("January", new { action = "IndexMonth1", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("February", new { action = "IndexMonth2", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("March", new { action = "IndexMonth3", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("April", new { action = "IndexMonth4", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("May", new { action = "IndexMonth5", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("June", new { action = "IndexMonth6", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("July", new { action = "IndexMonth7", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("August", new { action = "IndexMonth8", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("September", new { action = "IndexMonth9", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("October", new { action = "IndexMonth10", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("November", new { action = "IndexMonth11", controller = "Monthly", })
-                        </li>
-                        <li>
-                            @Html.RouteLink("December", new { action = "IndexMonth12", controller = "Monthly", })
-                        </li>
-                    </ul>*@
+            <li>
+                @Html.RouteLink("January", new { action = "IndexMonth1", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("February", new { action = "IndexMonth2", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("March", new { action = "IndexMonth3", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("April", new { action = "IndexMonth4", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("May", new { action = "IndexMonth5", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("June", new { action = "IndexMonth6", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("July", new { action = "IndexMonth7", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("August", new { action = "IndexMonth8", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("September", new { action = "IndexMonth9", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("October", new { action = "IndexMonth10", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("November", new { action = "IndexMonth11", controller = "Monthly", })
+            </li>
+            <li>
+                @Html.RouteLink("December", new { action = "IndexMonth12", controller = "Monthly", })
+            </li>
+        </ul>*@
                 </tbody>
             </table>
             <input type="Submit" value="Save" />

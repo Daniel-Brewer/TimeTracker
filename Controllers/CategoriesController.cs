@@ -85,6 +85,21 @@ namespace TimeTracker.Controllers
             }
             else
             {
+                ModelState.Remove("Category");
+                ModelState.Remove("Categories");
+                ModelState.Remove("Category");
+                ModelState.Remove("UserCategories");
+                ModelState.Remove("Categories.Title");
+                if (ModelState.IsValid)
+                {
+                    bool DatePickedAlreadyEntered = true;
+                    if (DatePickedAlreadyEntered)
+                    {
+                        ModelState.AddModelError(string.Empty, "Date already entered.");
+                        return View(ViewModel);
+                    }
+
+                }
                 return View("InvalidEntry2");
             }
         }
