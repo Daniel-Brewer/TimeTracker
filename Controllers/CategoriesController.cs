@@ -45,8 +45,8 @@ namespace TimeTracker.Controllers
 
         {
             var user = await GetCurrentUserAsync();
+            var model = new CategoriesIndexViewModel();
             ViewModel.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
-
             if (ViewModel.Categories.Count == ViewModel.MinutesSpentList.Count) {
                 for (int i = 0; i < ViewModel.Categories.Count; i++)
                 {
@@ -69,7 +69,11 @@ namespace TimeTracker.Controllers
                                 bool DatePickedAlreadyEntered = true;
                                 if (DatePickedAlreadyEntered)
                                 {
-                                    ModelState.AddModelError(string.Empty, "Date already entered.");
+                                    ModelState.AddModelError(string.Empty, "Date has been entered previously.");
+                                    var model2 = new CategoriesIndexViewModel();
+                                    model2.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                                    model2.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                                    return View(model2);
                                     return View(ViewModel);
                                 }
                                 
@@ -85,22 +89,21 @@ namespace TimeTracker.Controllers
             }
             else
             {
-                ModelState.Remove("Category");
-                ModelState.Remove("Categories");
-                ModelState.Remove("Category");
-                ModelState.Remove("UserCategories");
-                ModelState.Remove("Categories.Title");
 
+
+                ModelState.Clear();
                 if (ModelState.IsValid)
                 {
                     bool NoDataEntered = true;
                     if (NoDataEntered)
                     {
+                        ViewModel.MinutesSpentList = null;
                         ModelState.AddModelError(string.Empty, "Please enter data.");
-                        return View(ViewModel);
+                        var model3 = new CategoriesIndexViewModel();
+                        model3.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                        model3.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                        return View(model3);
                     }
-                    //await _context.SaveChangesAsync();
-                    //return RedirectToAction("Index", "Categories");
 
                 }
                 return View("InvalidEntry2");
