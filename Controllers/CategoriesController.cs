@@ -70,7 +70,11 @@ namespace TimeTracker.Controllers
                                 if (DatePickedAlreadyEntered)
                                 {
                                     ModelState.AddModelError(string.Empty, "Date already entered.");
-                                    return View(ViewModel);
+                                    var model2 = new CategoriesIndexViewModel();
+                                    model2.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                                    model2.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                                    return View(model2);
+                                    //return View(ViewModel);
                                 }
                                 
                             }
@@ -85,25 +89,28 @@ namespace TimeTracker.Controllers
             }
             else
             {
-                ModelState.Remove("Category");
-                ModelState.Remove("Categories");
-                ModelState.Remove("Category");
-                ModelState.Remove("UserCategories");
-                ModelState.Remove("Categories.Title");
+                //ModelState.Remove("Category");
+                //ModelState.Remove("Categories");
+                //ModelState.Remove("Category");
+                //ModelState.Remove("UserCategories");
+                //ModelState.Remove("Categories.Title");
 
-                if (ModelState.IsValid)
-                {
-                    bool NoDataEntered = true;
-                    if (NoDataEntered)
-                    {
+                //if (ModelState.IsValid)
+                //{
+                //    bool NoDataEntered = true;
+                //    if (NoDataEntered)
+                //    {
                         ModelState.AddModelError(string.Empty, "Please enter data.");
-                        return View(ViewModel);
-                    }
-                    //await _context.SaveChangesAsync();
-                    //return RedirectToAction("Index", "Categories");
+                        var model3 = new CategoriesIndexViewModel();
+                        model3.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                        model3.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                        return View(model3);
+                //    }
+                //    //await _context.SaveChangesAsync();
+                //    //return RedirectToAction("Index", "Categories");
 
-                }
-                return View("InvalidEntry2");
+                //}
+                //return View("InvalidEntry2");
             }
         }
 
