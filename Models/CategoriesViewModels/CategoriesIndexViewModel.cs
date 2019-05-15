@@ -23,7 +23,7 @@ namespace TimeTracker.Models.CategoriesViewModels
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "DatePicked:")]
+        [Display(Name = "Enter Date:")]
         public DateTime DatePicked { get; set; }
     }
 }

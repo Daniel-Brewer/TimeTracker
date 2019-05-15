@@ -16,11 +16,12 @@ namespace TimeTracker.Models
         [Required]
         public int CategoryId { get; set; }
         [Required]
+        [Display(Name = "Minutes Spent:")]
         public int MinutesSpent { get; set; }
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "DatePicked:")]
+        [Display(Name = "Date Entered:")]
         public DateTime DatePicked { get; set; }
         public User User { get; set; }
         public Category Category { get; set; }

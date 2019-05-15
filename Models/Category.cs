@@ -9,6 +9,7 @@ namespace TimeTracker.Models
     public class Category
     {
         public int Id { get; set; }
+        [Display(Name = "Category:")]
         public string Title { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
