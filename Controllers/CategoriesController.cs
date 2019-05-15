@@ -37,7 +37,14 @@ namespace TimeTracker.Controllers
             var model = new CategoriesIndexViewModel();
             model.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
             model.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
-            return View(model);
+            if(model.Categories.Count == 0)
+            {
+                return View("create");
+            }
+            else{
+                return View(model);
+            }
+
         }
 
         [HttpPost]

@@ -26,26 +26,31 @@
                     </div>
                 </td>
             </tr>
-
-            @for (int i = 0; i < Model.Categories.Count; i++)
+            @*@if (Model.Categories.Count == 0)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => Model.Categories[i].Title)
-                    </td>
-                    <td>
-                        <input type="number" asp-for="MinutesSpentList[i]" />
-                        <span asp-validation-for="UserCategories[i].MinutesSpent" class="text-danger"></span>
-                    </td>
+                return View("create");
 
-                    <td>
-                        <a asp-action="Delete" asp-route-id="@Model.Categories[i].Id">Delete Category</a>
-                    </td>
-                    <td>
-                        <input type="hidden" asp-for="Categories[i].Id" />
-                    </td>
-                </tr>
-            }
+            }*@
+                @for (int i = 0; i < Model.Categories.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Categories[i].Title)
+                        </td>
+                        <td>
+                            <input type="number" asp-for="MinutesSpentList[i]" />
+                            <span asp-validation-for="UserCategories[i].MinutesSpent" class="text-danger"></span>
+                        </td>
+
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@Model.Categories[i].Id">Delete Category</a>
+                        </td>
+                        <td>
+                            <input type="hidden" asp-for="Categories[i].Id" />
+                        </td>
+                    </tr>
+                }
+            
 
         </tbody>
     </table>

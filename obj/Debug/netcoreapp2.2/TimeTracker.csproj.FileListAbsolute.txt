@@ -47,3 +47,11 @@ C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Raz
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\Edit.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\Index.g.cshtml.cs
 C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Views\Monthly\IndexMonth1.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\ExternalLogin.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Login.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_Layout.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\_ViewImports.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Daniel\source\repos\TimeTracker\TimeTracker\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewImports.g.cshtml.cs
