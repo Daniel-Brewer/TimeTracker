@@ -2759,18 +2759,8 @@
   "RootNamespace": "TimeTracker",
   "Documents": [
     {
-      "FilePath": "Views\\Monthly\\IndexMonth2.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth2.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Monthly\\IndexMonth9.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth9.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2794,11 +2784,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Monthly\\IndexMonth3.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth3.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "Views\\UserCategories\\Delete.cshtml",
       "TargetPath": "Views\\UserCategories\\Delete.cshtml",
       "FileKind": "mvc"
@@ -2819,11 +2804,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Monthly\\IndexMonth6.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth6.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "Views\\Categories\\InvalidEntry.cshtml",
       "TargetPath": "Views\\Categories\\InvalidEntry.cshtml",
       "FileKind": "mvc"
@@ -2841,11 +2821,6 @@
     {
       "FilePath": "Views\\UserCategories\\Details.cshtml",
       "TargetPath": "Views\\UserCategories\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Monthly\\IndexMonth7.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth7.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2874,18 +2849,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Monthly\\IndexMonth12.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth12.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "Views\\UserCategories\\Index.cshtml",
       "TargetPath": "Views\\UserCategories\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Monthly\\IndexMonth4.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth4.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2909,11 +2874,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Monthly\\IndexMonth5.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth5.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "Views\\Categories\\Edit.cshtml",
       "TargetPath": "Views\\Categories\\Edit.cshtml",
       "FileKind": "mvc"
@@ -2921,11 +2881,6 @@
     {
       "FilePath": "Views\\UserCategories\\Edit.cshtml",
       "TargetPath": "Views\\UserCategories\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Monthly\\IndexMonth11.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth11.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2941,16 +2896,6 @@
     {
       "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Monthly\\IndexMonth8.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth8.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Monthly\\IndexMonth10.cshtml",
-      "TargetPath": "Views\\Monthly\\IndexMonth10.cshtml",
       "FileKind": "mvc"
     },
     {
