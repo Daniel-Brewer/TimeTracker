@@ -52,8 +52,8 @@ namespace TimeTracker.Controllers
 
         {
             var user = await GetCurrentUserAsync();
+            var model = new CategoriesIndexViewModel();
             ViewModel.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
-
             if (ViewModel.Categories.Count == ViewModel.MinutesSpentList.Count) {
                 for (int i = 0; i < ViewModel.Categories.Count; i++)
                 {
@@ -93,6 +93,7 @@ namespace TimeTracker.Controllers
                                         return View(model2);
 
                                     }
+
 
                                 }
                             }
