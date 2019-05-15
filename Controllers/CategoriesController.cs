@@ -159,24 +159,7 @@ namespace TimeTracker.Controllers
             }
             return View(category);
         }
-
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var userCategory = await _context.UserCategories.FindAsync(id);
-        //    if (userCategory == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
-        //    ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
-        //    return View(userCategory);
-        //}
-
+ 
         // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -212,47 +195,6 @@ namespace TimeTracker.Controllers
             }
             return View(category);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,MinutesSpent,DatePicked")] UserCategory userCategory)
-        //{
-        //    var category = _context.Categories;
-        //    if (id != userCategory.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //                _context.Update(category);
-        //                _context.Update(userCategory);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!UserCategoryExists(userCategory.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
-        //    ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
-        //    return View(userCategory);
-        //}
-
-        //private bool UserCategoryExists(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
