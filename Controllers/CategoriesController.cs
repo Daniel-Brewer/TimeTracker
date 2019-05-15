@@ -66,26 +66,37 @@ namespace TimeTracker.Controllers
                     };
                     for (int j = 0; j < ViewModel.UserCategories.Count; j++)
                     {
+                        //if (usercategory.DatePicked = 0001-01-01 00:00:00.0000000)
+                        //{
+                        //    ModelState.AddModelError(string.Empty, "Please select a date.");
+                        //    var model4 = new CategoriesIndexViewModel();
+                        //    model4.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                        //    model4.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                        //    return View(model4);
+                        //}
+                        //else
+                        //{
                         if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
-                        {
-                            ModelState.Remove("Category");
-                            ModelState.Remove("Categories");
-                            ModelState.Remove("Categories.Title");
-                            if (ModelState.IsValid)
                             {
-                                bool DatePickedAlreadyEntered = true;
-                                if (DatePickedAlreadyEntered)
+                                ModelState.Remove("Category");
+                                ModelState.Remove("Categories");
+                                ModelState.Remove("Categories.Title");
+                                if (ModelState.IsValid)
                                 {
-                                    ModelState.AddModelError(string.Empty, "This date has been entered already. Please select another date.");
-                                    var model2 = new CategoriesIndexViewModel();
-                                    model2.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
-                                    model2.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
-                                    return View(model2);
- 
+                                    bool DatePickedAlreadyEntered = true;
+                                    if (DatePickedAlreadyEntered)
+                                    {
+                                        ModelState.AddModelError(string.Empty, "This date has been entered already. Please select another date.");
+                                        var model2 = new CategoriesIndexViewModel();
+                                        model2.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                                        model2.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                                        return View(model2);
+
+                                    }
+
                                 }
-                                
                             }
-                        }
+                        //}
 
                     }
                     _context.Add(usercategory);
