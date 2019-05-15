@@ -17,7 +17,7 @@
                 <td>
                     <!-- Insert a date editor in a Razor view -->
                     <div class="form-group">
-                        @Html.LabelFor(model => model.DatePicked, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.DatePicked, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-10">
                             @Html.TextBoxFor(model => model.DatePicked, new { @type = "date", @class = "form-control datepicker", @Value = Model.DatePicked.ToString("yyyy-MM-dd") })
                             @Html.ValidationMessageFor(model => model.DatePicked, "", new { @class = "text-danger" })
@@ -55,5 +55,5 @@
         </tbody>
     </table>
 
-    <input type="Submit" value="Save" />
+    <input type="Submit" value="Submit" />
 </form>
