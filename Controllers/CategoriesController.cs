@@ -37,7 +37,14 @@ namespace TimeTracker.Controllers
             var model = new CategoriesIndexViewModel();
             model.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
             model.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
-            return View(model);
+            if(model.Categories.Count == 0)
+            {
+                return View("create");
+            }
+            else{
+                return View(model);
+            }
+
         }
 
         [HttpPost]
@@ -59,26 +66,38 @@ namespace TimeTracker.Controllers
                     };
                     for (int j = 0; j < ViewModel.UserCategories.Count; j++)
                     {
+                        //if (usercategory.DatePicked = 0001-01-01 00:00:00.0000000)
+                        //{
+                        //    ModelState.AddModelError(string.Empty, "Please select a date.");
+                        //    var model4 = new CategoriesIndexViewModel();
+                        //    model4.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                        //    model4.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                        //    return View(model4);
+                        //}
+                        //else
+                        //{
                         if (usercategory.DatePicked == ViewModel.UserCategories[j].DatePicked)
-                        {
-                            ModelState.Remove("Category");
-                            ModelState.Remove("Categories");
-                            ModelState.Remove("Categories.Title");
-                            if (ModelState.IsValid)
                             {
-                                bool DatePickedAlreadyEntered = true;
-                                if (DatePickedAlreadyEntered)
+                                ModelState.Remove("Category");
+                                ModelState.Remove("Categories");
+                                ModelState.Remove("Categories.Title");
+                                if (ModelState.IsValid)
                                 {
-                                    ModelState.AddModelError(string.Empty, "Date has been entered previously.");
-                                    var model2 = new CategoriesIndexViewModel();
-                                    model2.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
-                                    model2.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
-                                    return View(model2);
-                                    return View(ViewModel);
+                                    bool DatePickedAlreadyEntered = true;
+                                    if (DatePickedAlreadyEntered)
+                                    {
+                                        ModelState.AddModelError(string.Empty, "This date has been entered already. Please select another date.");
+                                        var model2 = new CategoriesIndexViewModel();
+                                        model2.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
+                                        model2.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
+                                        return View(model2);
+
+                                    }
+
+
                                 }
-                                
                             }
-                        }
+                        //}
 
                     }
                     _context.Add(usercategory);
@@ -90,23 +109,12 @@ namespace TimeTracker.Controllers
             else
             {
 
-
-                ModelState.Clear();
-                if (ModelState.IsValid)
-                {
-                    bool NoDataEntered = true;
-                    if (NoDataEntered)
-                    {
-                        ViewModel.MinutesSpentList = null;
                         ModelState.AddModelError(string.Empty, "Please enter data.");
                         var model3 = new CategoriesIndexViewModel();
                         model3.UserCategories = await _context.UserCategories.Include(uc => uc.User).Where(uc => uc.UserId == user.Id).ToListAsync();
                         model3.Categories = await _context.Categories.Include(c => c.User).Where(c => c.UserId == user.Id).OrderBy(c => c.Title).ToListAsync();
                         return View(model3);
-                    }
 
-                }
-                return View("InvalidEntry2");
             }
         }
 
@@ -170,24 +178,7 @@ namespace TimeTracker.Controllers
             }
             return View(category);
         }
-
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var userCategory = await _context.UserCategories.FindAsync(id);
-        //    if (userCategory == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
-        //    ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
-        //    return View(userCategory);
-        //}
-
+ 
         // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -223,47 +214,6 @@ namespace TimeTracker.Controllers
             }
             return View(category);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,MinutesSpent,DatePicked")] UserCategory userCategory)
-        //{
-        //    var category = _context.Categories;
-        //    if (id != userCategory.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //                _context.Update(category);
-        //                _context.Update(userCategory);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!UserCategoryExists(userCategory.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", userCategory.CategoryId);
-        //    ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userCategory.UserId);
-        //    return View(userCategory);
-        //}
-
-        //private bool UserCategoryExists(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
