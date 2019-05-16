@@ -51,7 +51,7 @@ namespace TimeTracker.Controllers
                 Category = g.Key,
                 MinutesSpent = g.Sum(uc => uc.MinutesSpent)
             });
-            return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.OrderByDescending(uc => uc.MinutesSpent).ToListAsync());
         }
  
       
