@@ -27,6 +27,6 @@ namespace TimeTracker.Models.MonthlyViewModels
 
    
     
-    //public DateTime MonthPicked (int year, int month, int day);
+   
 }
 
