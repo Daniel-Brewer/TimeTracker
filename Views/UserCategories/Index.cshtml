@@ -6,9 +6,7 @@
 
 <h1>Category Entries</h1>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+
 <table class="table">
     <thead>
         <tr>
@@ -21,13 +19,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.MinutesSpent)
             </th>
-
-            @*<th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -43,12 +34,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MinutesSpent)
             </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.User.Id)
-        </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
