@@ -29,8 +29,6 @@ namespace TimeTracker.Controllers
         public async Task<IActionResult> Index()
     {
             List<Category> applicationDbContext = _context.Categories.ToList();
-     /*   var reverseApp = applicationDbContext.OrderByDescending(p => p.UserId); 
-        return View(await reverseApp.ToListAsync()); */
             return View(applicationDbContext);
         }
 

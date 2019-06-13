@@ -12,7 +12,6 @@ namespace TimeTracker.Models
         {
         }
 
-     /*   public int Id{ get; set; } */
         public ICollection<UserCategory> UserCategories { get; set; }
     }
 }
